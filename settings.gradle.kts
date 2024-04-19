@@ -15,3 +15,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "ReadingList"
 include(":app")
+include(":data")
+include(":database")
