@@ -9,7 +9,7 @@ import com.example.data.model.Book
 interface BookDao {
 
     @Query("Select * from Book")
-    fun getAllBook()
+    fun getAllBook() : Book
 
     @Insert
     fun insertBook(book: Book)
