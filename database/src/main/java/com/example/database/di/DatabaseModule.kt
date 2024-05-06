@@ -1,8 +1,8 @@
-package com.example.data.di
+package com.example.database.di
 
 import android.content.Context
 import androidx.room.Room
-import com.example.data.BookDatabase
+import com.example.database.BookDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
