@@ -3,6 +3,10 @@ package com.example.database.di
 import android.content.Context
 import androidx.room.Room
 import com.example.database.BookDatabase
+import com.example.database.BookRepoImpl
+import com.example.database.BookRepository
+import com.example.database.dao.BookDao
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -12,10 +16,14 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-class DatabaseModule {
+object DatabaseModule {
 
     @Provides
     fun provideBookDao(bookDatabase: BookDatabase) = bookDatabase.bookDao()
+
+    @Provides
+    fun providesPostRepository(postDao: BookDao):BookRepository =
+        BookRepoImpl(postDao)
 
     @Provides
     @Singleton
