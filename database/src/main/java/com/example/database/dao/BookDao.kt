@@ -2,6 +2,7 @@ package com.example.database.dao
 
 import androidx.room.Dao
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.database.model.Book
 
@@ -11,6 +12,6 @@ interface BookDao {
     @Query("Select * from Book")
     fun getAllBook() : Book
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertBook(book: Book)
 }
