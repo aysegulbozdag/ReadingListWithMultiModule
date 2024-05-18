@@ -6,8 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.example.ui.databinding.FragmentBookBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class BookFragment : Fragment() {
@@ -26,13 +28,22 @@ class BookFragment : Fragment() {
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         clickListener()
+
+        lifecycleScope.launch {
+            viewModel.bookState.collect{
+                binding.recyclerView.adapter= BookAdapter(it)
+            }
+        }
+
     }
 
     private fun clickListener(){
         binding.btnAdd.setOnClickListener {
             if (binding.txtBookName.text.isNotEmpty()){
                 viewModel.addBook(binding.txtBookName.text.toString())
+                binding.txtBookName.text.clear()
             }
         }
     }

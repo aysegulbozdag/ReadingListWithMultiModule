@@ -10,7 +10,7 @@ import com.example.database.model.Book
 interface BookDao {
 
     @Query("Select * from Book")
-    fun getAllBook() : Book
+    fun getAllBook() : List<Book>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertBook(book: Book)

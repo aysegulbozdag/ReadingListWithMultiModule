@@ -5,5 +5,7 @@ import com.example.database.model.Book
 import javax.inject.Inject
 
 interface BookRepository {
-    fun insertBook(bookName: String)
+   suspend fun insertBook(bookName: String)
+
+   suspend fun getBooks(): List<Book>
 }
